@@ -7,118 +7,116 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <header class="header">
-            <h1>Калькулятор Натуральних Чисел</h1>
-            <p>Веб-додаток для роботи з натуральними числами з використанням ООП підходу</p>
-        </header>
+<div class="container">
+    <header class="header">
+        <h1>Калькулятор для роботи з натуральним числом</h1>
+        <p>Реалізація класу, що представляє натуральне число, індексатор для
+            доступу до цифр цього числа, методи обернення числа, та підрахунок кількості
+            нулів.</p>
+    </header>
 
-        <main class="main-content">
-            <section class="input-section card">
-                <div class="card__body">
-                    <h2>Введіть натуральне число</h2>
-                    <div class="form-group">
-                        <label for="numberInput" class="form-label">Натуральне число</label>
-                        <input 
-                            type="text" 
-                            id="numberInput" 
-                            class="form-control" 
-                            placeholder="Введіть число (наприклад: 12345)"
+    <main class="main-content">
+        <section class="input-section card">
+            <div class="card__body">
+                <h2>Введіть натуральне число</h2>
+                <div class="form-group">
+                    <label for="numberInput" class="form-label">Натуральне число</label>
+                    <input
+                            type="text"
+                            id="numberInput"
+                            class="form-control"
+                            placeholder="Введіть число:"
                             autocomplete="off"
-                        >
-                        <div id="inputError" class="error-message hidden"></div>
-                        <div id="inputSuccess" class="success-message hidden"></div>
+                    >
+                    <div id="inputError" class="error-message hidden"></div>
+                    <div id="inputSuccess" class="success-message hidden"></div>
+                </div>
+
+                <div class="number-info hidden" id="numberInfo">
+                    <div class="info-item">
+                        <span class="info-label">Поточне число:</span>
+                        <span class="info-value" id="currentNumber">-</span>
                     </div>
-                    
-                    <div class="number-info hidden" id="numberInfo">
-                        <div class="info-item">
-                            <span class="info-label">Поточне число:</span>
-                            <span class="info-value" id="currentNumber">-</span>
-                        </div>
-                        <div class="info-item">
-                            <span class="info-label">Довжина:</span>
-                            <span class="info-value" id="numberLength">-</span>
+                    <div class="info-item">
+                        <span class="info-label">Довжина:</span>
+                        <span class="info-value" id="numberLength">-</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="operations-section">
+            <div class="operations-grid">
+                <div class="operation-card card">
+                    <div class="card__body">
+                        <h3>Підрахунок нулів</h3>
+                        <p>Підрахувати кількість нулів у числі</p>
+                        <button id="countZerosBtn" class="btn btn--primary btn--full-width" disabled>
+                            Порахувати нулі
+                        </button>
+                        <div id="zerosResult" class="result-area hidden">
+                            <div class="result-label">Результат:</div>
+                            <div class="result-value" id="zerosCount">-</div>
                         </div>
                     </div>
                 </div>
-            </section>
 
-            <section class="operations-section">
-                <div class="operations-grid">
-                    <!-- Count Zeros Operation -->
-                    <div class="operation-card card">
-                        <div class="card__body">
-                            <h3>Підрахунок нулів</h3>
-                            <p>Підрахувати кількість нулів у числі</p>
-                            <button id="countZerosBtn" class="btn btn--primary btn--full-width" disabled>
-                                Порахувати нулі
-                            </button>
-                            <div id="zerosResult" class="result-area hidden">
-                                <div class="result-label">Результат:</div>
-                                <div class="result-value" id="zerosCount">-</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Get Digit Operation -->
-                    <div class="operation-card card">
-                        <div class="card__body">
-                            <h3>Отримати цифру</h3>
-                            <p>Отримати цифру за індексом (0-based)</p>
-                            <div class="form-group">
-                                <label for="indexInput" class="form-label">Індекс</label>
-                                <input 
-                                    type="number" 
-                                    id="indexInput" 
-                                    class="form-control" 
+                <div class="operation-card card">
+                    <div class="card__body">
+                        <h3>Отримати цифру</h3>
+                        <p>Отримати цифру за індексом</p>
+                        <div class="form-group">
+                            <label for="indexInput" class="form-label">Індекс</label>
+                            <input
+                                    type="number"
+                                    id="indexInput"
+                                    class="form-control"
                                     placeholder="Введіть індекс"
                                     min="0"
-                                >
-                            </div>
-                            <button id="getDigitBtn" class="btn btn--primary btn--full-width" disabled>
-                                Отримати цифру
-                            </button>
-                            <div id="digitResult" class="result-area hidden">
-                                <div class="result-label">Цифра за індексом <span id="usedIndex">-</span>:</div>
-                                <div class="result-value" id="digitValue">-</div>
-                            </div>
+                            >
                         </div>
-                    </div>
-
-                    <!-- Reverse New Operation -->
-                    <div class="operation-card card">
-                        <div class="card__body">
-                            <h3>Обернути (нове число)</h3>
-                            <p>Створити нове обернене число</p>
-                            <button id="reverseNewBtn" class="btn btn--secondary btn--full-width" disabled>
-                                Обернути (нове)
-                            </button>
-                            <div id="reverseNewResult" class="result-area hidden">
-                                <div class="result-label">Обернене число:</div>
-                                <div class="result-value" id="reversedNumber">-</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Reverse In-Place Operation -->
-                    <div class="operation-card card">
-                        <div class="card__body">
-                            <h3>Обернути (на місці)</h3>
-                            <p>Змінити поточне число на обернене</p>
-                            <button id="reverseInPlaceBtn" class="btn btn--outline btn--full-width" disabled>
-                                Обернути (in-place)
-                            </button>
-                            <div id="reverseInPlaceResult" class="result-area hidden">
-                                <div class="result-label">Оновлене число:</div>
-                                <div class="result-value" id="updatedNumber">-</div>
-                            </div>
+                        <button id="getDigitBtn" class="btn btn--primary btn--full-width" disabled>
+                            Отримати цифру
+                        </button>
+                        <div id="digitResult" class="result-area hidden">
+                            <div class="result-label">Цифра за індексом <span id="usedIndex">-</span>:</div>
+                            <div class="result-value" id="digitValue">-</div>
                         </div>
                     </div>
                 </div>
-            </section>
-        </main>
-    </div>
 
-    <script src="app.js"></script>
+                <div class="operation-card card">
+                    <div class="card__body">
+                        <h3>Обернути новостворене число</h3>
+                        <p>Створити нове обернене число</p>
+                        <button id="reverseNewBtn" class="btn btn--secondary btn--full-width" disabled>
+                            Обернути
+                        </button>
+                        <div id="reverseNewResult" class="result-area hidden">
+                            <div class="result-label">Обернене число:</div>
+                            <div class="result-value" id="reversedNumber">-</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="operation-card card">
+                    <div class="card__body">
+                        <h3>Обернути наявне число</h3>
+                        <p>Змінити поточне число на обернене</p>
+                        <button id="reverseInPlaceBtn" class="btn btn--outline btn--full-width" disabled>
+                            Обернути
+                        </button>
+                        <div id="reverseInPlaceResult" class="result-area hidden">
+                            <div class="result-label">Оновлене число:</div>
+                            <div class="result-value" id="updatedNumber">-</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>
